@@ -1,4 +1,4 @@
-package org.placepool.places;
+package org.placepool.places.mvc;
 
 import java.text.DateFormat;
 import java.util.Date;
