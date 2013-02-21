@@ -41,11 +41,11 @@ public class GenericDaoImplntegrationTest {
 		genericDao.persist(ent);
 		Long id = ent.getId();
 		assertNotNull(id);
-		PlaceEntity saved = (PlaceEntity) genericDao.get(new PlaceEntity(id));
+		PlaceEntity saved = (PlaceEntity) genericDao.get(PlaceEntity.class, id);
 		assertEquals(ent.getId(), saved.getId());
 		assertEquals(ent.getName(), saved.getName());
 		genericDao.delete(saved);
-		PlaceEntity deleted = (PlaceEntity) genericDao.get(new PlaceEntity(id));
+		PlaceEntity deleted = (PlaceEntity) genericDao.get(PlaceEntity.class, id);
 		assertNull(deleted);
 	}
 
@@ -58,7 +58,7 @@ public class GenericDaoImplntegrationTest {
 		String name2 = "name2";
 		ent.setName(name2);
 		genericDao.update(ent);
-		PlaceEntity updated = (PlaceEntity) genericDao.get(new PlaceEntity(ent.getId()));
+		PlaceEntity updated = (PlaceEntity) genericDao.get(PlaceEntity.class, ent.getId());
 		assertEquals(name2, updated.getName());
 	}
 

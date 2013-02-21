@@ -36,8 +36,8 @@ public class GenericDaoImpl<T extends Serializable> implements GenericDao<T> {
 	}
 
 	@Override
-	public Identifiable<T> get(Identifiable<T> entity) {
-		return (Identifiable<T>) sessionFactory.getCurrentSession().get(entity.getClass(), entity.getId());
+	public Identifiable<T> get(Class clazz, Serializable id) {
+		return (Identifiable<T>) sessionFactory.getCurrentSession().get(clazz, id);
 	}
 
 }
