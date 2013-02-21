@@ -7,6 +7,7 @@
 	<name>PlacePool</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework-version>3.2.1.RELEASE</org.springframework-version>
@@ -14,6 +15,8 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -252,6 +255,44 @@
 				<configuration>
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>2.0.5</version>
+				<configuration>
+					<changeLogFile>infrastructure/database/structure.xml</changeLogFile>
+					<driver>${jdbc.driverClassName}</driver>
+					<url>${jdbc.databaseurl}</url>
+					<username>${jdbc.username}</username>
+					<password>${jdbc.password}</password>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>update</goal>
+						</goals>
+						<phase>install</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0-alpha-2</version>
+				<executions>
+					<execution>					
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<files>
+								<file>src/main/resources/jdbc.properties</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
