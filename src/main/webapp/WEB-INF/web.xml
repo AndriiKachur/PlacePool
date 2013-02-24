@@ -10,7 +10,7 @@
 		<param-value>
 			classpath:spring/root-context.xml
 			classpath:spring/appServlet/servlet-context.xml
-			classpath:spring//applicationContext-security.xml
+			classpath:spring/applicationContext-security.xml
 		</param-value>
 	</context-param>
 
@@ -32,10 +32,10 @@
 
 	<servlet>
 		<servlet-name>Jersey Web Application</servlet-name>
-		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>org.placepool.places.rest</param-value>
+			<param-value>org.placepool.places</param-value>
 		</init-param>
 		<init-param>
 			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
