@@ -1,15 +1,15 @@
 package org.tourism.places.dao;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.placepool.places.dao.GenericDao;
 import org.placepool.places.domain.PlaceEntity;
-import org.placepool.places.domain.PlaceInfo;
+import org.placepool.places.domain.PlaceInfoEntity;
 import org.placepool.places.domain.PlaceInfoType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -36,13 +36,12 @@ public class GenericDaoImplntegrationTest {
 		PlaceEntity ent = new PlaceEntity();
 		ent.setName(new Object().toString());
 
-		PlaceInfo info = new PlaceInfo();
+		PlaceInfoEntity info = new PlaceInfoEntity();
 		info.setType(PlaceInfoType.CONTACT);
 		info.setValue(new Object().toString());
+		info.setPlace(ent);
 
-		List<PlaceInfo> infos = new ArrayList<PlaceInfo>();
-		infos.add(info);
-		ent.setInfo(infos);
+		ent.getInfo().add(info);
 
 		genericDao.persist(ent);
 		assertNotNull(ent.getId());
@@ -50,6 +49,9 @@ public class GenericDaoImplntegrationTest {
 		ent = (PlaceEntity) genericDao.get(ent.getClass(), ent.getId());
 		assertTrue(ent.getInfo().size() > 0);
 		assertNotNull(ent.getInfo().get(0).getId());
+
+		info = (PlaceInfoEntity) genericDao.get(info.getClass(), info.getId());
+		assertNotNull(info.getPlace());
 	}
 
 	@Test

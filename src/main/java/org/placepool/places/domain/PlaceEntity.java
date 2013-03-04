@@ -1,10 +1,12 @@
 package org.placepool.places.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -37,9 +40,9 @@ public class PlaceEntity implements Identifiable<Long> {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date publishDate;
 
-	//FIXME: broken link
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "placeId")
-	private List<PlaceInfo> info;
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "place", fetch = FetchType.LAZY)
+	private List<PlaceInfoEntity> info = new ArrayList<PlaceInfoEntity>();
 
 	public Long getId() {
 		return id;
@@ -81,11 +84,11 @@ public class PlaceEntity implements Identifiable<Long> {
 		this.publishDate = publishDate;
 	}
 
-	public List<PlaceInfo> getInfo() {
+	public List<PlaceInfoEntity> getInfo() {
 		return info;
 	}
 
-	public void setInfo(List<PlaceInfo> info) {
+	public void setInfo(List<PlaceInfoEntity> info) {
 		this.info = info;
 	}
 

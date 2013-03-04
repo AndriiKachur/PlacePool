@@ -3,16 +3,20 @@ package org.placepool.places.domain;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "place_info")
-public class PlaceInfo implements Identifiable<Long> {
+public class PlaceInfoEntity implements Identifiable<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +27,11 @@ public class PlaceInfo implements Identifiable<Long> {
 
 	@Length(max = 500)
 	private String value;
-	
-	private Long placeId;
+
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "place_id", nullable = false)
+	private PlaceEntity place;
 
 	public Long getId() {
 		return id;
@@ -50,12 +57,12 @@ public class PlaceInfo implements Identifiable<Long> {
 		this.value = value;
 	}
 
-	public Long getPlaceId() {
-		return placeId;
+	public PlaceEntity getPlace() {
+		return place;
 	}
 
-	public void setPlaceId(Long placeId) {
-		this.placeId = placeId;
+	public void setPlace(PlaceEntity place) {
+		this.place = place;
 	}
 
 }

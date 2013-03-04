@@ -38,7 +38,9 @@
 			</column>
 			<column name="type" type="varchar(15)"></column>
 			<column name="value" type="varchar(500)"></column>
-			<column name="placeId" type="BIGINT"></column>
+			<column name="place_id" type="BIGINT">
+				<constraints foreignKeyName="fk_place_info" references="place(id)" nullable="false"/>
+			</column>
 		</createTable>
 	</changeSet>
 
