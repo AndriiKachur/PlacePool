@@ -13,6 +13,6 @@ public interface GenericDao<T> {
 
 	void update(Identifiable<T> entity);
 
-	Identifiable<T> get(Class<?> clazz, Serializable id);
+	Identifiable<T> get(Class clazz, Serializable id);
 
 }

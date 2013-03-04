@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.placepool.places.dao.GenericDao;
+import org.placepool.places.dao.PlaceDao;
 import org.placepool.places.domain.PlaceEntity;
 import org.placepool.places.domain.PlaceInfoEntity;
 import org.placepool.places.domain.PlaceInfoType;
@@ -21,14 +21,14 @@ import org.springframework.transaction.annotation.Transactional;
 @TransactionConfiguration(defaultRollback = true)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/appServlet/servlet-context.xml" })
-public class GenericDaoImplntegrationTest {
+public class PlaceDaoImplntegrationTest {
 
 	@Autowired
-	private GenericDao<Long> genericDao;
+	private PlaceDao placeDao;
 
 	@Test
 	public void testContext() {
-		assertNotNull(genericDao);
+		assertNotNull(placeDao);
 	}
 
 	@Test
@@ -43,14 +43,14 @@ public class GenericDaoImplntegrationTest {
 
 		ent.getInfo().add(info);
 
-		genericDao.persist(ent);
+		placeDao.persist(ent);
 		assertNotNull(ent.getId());
 
-		ent = (PlaceEntity) genericDao.get(ent.getClass(), ent.getId());
+		ent = (PlaceEntity) placeDao.get(ent.getClass(), ent.getId());
 		assertTrue(ent.getInfo().size() > 0);
 		assertNotNull(ent.getInfo().get(0).getId());
 
-		info = (PlaceInfoEntity) genericDao.get(info.getClass(), info.getId());
+		info = (PlaceInfoEntity) placeDao.get(info.getClass(), info.getId());
 		assertNotNull(info.getPlace());
 	}
 
@@ -59,16 +59,16 @@ public class GenericDaoImplntegrationTest {
 		PlaceEntity ent = new PlaceEntity();
 		ent.setName(new Object().toString());
 
-		genericDao.persist(ent);
+		placeDao.persist(ent);
 		Long id = ent.getId();
 		assertNotNull(id);
 
-		PlaceEntity saved = (PlaceEntity) genericDao.get(PlaceEntity.class, id);
+		PlaceEntity saved = (PlaceEntity) placeDao.get(PlaceEntity.class, id);
 		assertEquals(ent.getId(), saved.getId());
 		assertEquals(ent.getName(), saved.getName());
 
-		genericDao.delete(saved);
-		PlaceEntity deleted = (PlaceEntity) genericDao.get(PlaceEntity.class, id);
+		placeDao.delete(saved);
+		PlaceEntity deleted = (PlaceEntity) placeDao.get(PlaceEntity.class, id);
 		assertNull(deleted);
 	}
 
@@ -78,11 +78,11 @@ public class GenericDaoImplntegrationTest {
 		String name1 = new Object().toString();
 		ent.setName(name1);
 
-		genericDao.persist(ent);
+		placeDao.persist(ent);
 		String name2 = "name2";
 		ent.setName(name2);
-		genericDao.update(ent);
-		PlaceEntity updated = (PlaceEntity) genericDao.get(PlaceEntity.class, ent.getId());
+		placeDao.update(ent);
+		PlaceEntity updated = (PlaceEntity) placeDao.get(PlaceEntity.class, ent.getId());
 		assertEquals(name2, updated.getName());
 	}
 

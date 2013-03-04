@@ -6,7 +6,7 @@
 
 	<debug />
 
-	<global-method-security pre-post-annotations="enabled" />
+	<global-method-security pre-post-annotations="enabled" jsr250-annotations="enabled" />
 
 	<http pattern="/resources/**" security="none" />
 
