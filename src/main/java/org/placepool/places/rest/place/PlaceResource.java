@@ -1,7 +1,10 @@
 package org.placepool.places.rest.place;
 
+import java.util.Date;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -9,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.placepool.places.dao.PlaceDao;
+import org.placepool.places.domain.PlaceEntity;
 import org.placepool.places.rest.Paths;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +49,14 @@ public class PlaceResource {
 	@Path(Paths.Place.NOT_PUBLISHED)
 	public Response getNotPublishedPlaces() {
 		return Response.ok(placeDao.listNotPublished()).build();
+	}
+	
+	@PUT
+	public Response saveOrUpdate(PlaceEntity place) {
+		if (place.getId() == null) {
+			place.setCreateDate(new Date());
+		}
+		placeDao.saveOrUpdate(place);
+		return Response.ok(place).build();
 	}
 }
