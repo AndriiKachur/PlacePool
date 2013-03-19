@@ -27,9 +27,10 @@ function PlaceCreateCtrl($scope, Place, $location) {
 			type: 'PUT',
 			dataType: 'json',
 			contentType: 'application/json',
-			data: $scope.place,
+			data: JSON.stringify($scope.place),
 			success: function(data, textStatus, jqXHR) {
 				$location.path('/place/' + data.id);
+				$scope.$apply();
 			}
 		});
 	}
