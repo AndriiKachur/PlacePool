@@ -1,17 +1,31 @@
-<form class="form-horizontal">
+<form class="form-horizontal" ng-submit="save()">
 	<legend>Enter new Place details</legend>
 	
+	<p>
 	<label>Place name: 
-		<input type="text" ng-model="place.name" />
+		<input type="text" ng-model="place.name" required ngMaxlength="100" placeholder="Place title..."/>
 	</label>
+	</p>
 	
+	<p>
 	<label>Place description:
-	 <textarea ng-model="place.description" rows="5" cols="60">
-	
-	</textarea>
+		<textarea ui-tinymce ngMaxlength="2000" ng-model="place.description"
+			placeholder="Place description..." cols="50" rows="10">
+		</textarea>
 	</label>
+	</p>
 
-	<button ng-click="save()">Save</button>
+	<div>
+		<p>Place links: <a ng-click="addLink()">Add</a></p>
+		<ul ng-repeat="i in place.info">
+			<li>
+			<select ng-model="i.type" ng-options="value for value in ['CONTACT', 'IMAGE_URL', 'DESC_URL']">
+			</select>
+			<input type="url" ng-model="i.value" required placeholder="url"/> [<a href ng-click="place.info.splice($index, 1)">X</a>]</li>
+		</ul>
+	</div>
+
+	<button type="submit" value="submit" class="btn">Create place</button>
 
 
 </form>

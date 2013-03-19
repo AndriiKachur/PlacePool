@@ -20,6 +20,7 @@ function PlaceDetailCtrl($scope, $routeParams, Place) {
 
 function PlaceCreateCtrl($scope, Place, $location) {
 	$scope.place = {};
+	$scope.place.info = [];
 	
 	$scope.save = function() {
 		$.ajax({
@@ -27,11 +28,15 @@ function PlaceCreateCtrl($scope, Place, $location) {
 			type: 'PUT',
 			dataType: 'json',
 			contentType: 'application/json',
-			data: JSON.stringify($scope.place),
+			data: angular.toJson($scope.place),
 			success: function(data, textStatus, jqXHR) {
 				$location.path('/place/' + data.id);
 				$scope.$apply();
 			}
 		});
+	}
+	
+	$scope.addLink = function() {
+		$scope.place.info.push({});
 	}
 }

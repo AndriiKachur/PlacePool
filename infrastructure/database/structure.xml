@@ -16,7 +16,7 @@
 			<column name="token" type="varchar(64)">
 				<constraints nullable="false" />
 			</column>
-			<column name="last_used" type="timestamp">
+			<column name="last_used" type="DATETIME">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
@@ -29,8 +29,12 @@
 			</column>
 			<column name="name" type="varchar(100)"></column>
 			<column name="description" type="varchar(2000)"></column>
-			<column name="createDate" type="timestamp"></column>
-			<column name="publishDate" type="timestamp"></column>
+			<column name="createDate" type="DATETIME">
+				<constraints nullable="false"/>
+			</column>
+			<column name="publishDate" type="DATETIME" defaultValueDate="null">
+				<constraints nullable="true"/>
+			</column>
 		</createTable>
 		<createTable tableName="place_info">
 			<column name="id" type="BIGINT" autoIncrement="true">

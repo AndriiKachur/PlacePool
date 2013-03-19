@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.hibernate.validator.constraints.Length;
@@ -22,12 +23,15 @@ public class PlaceInfoEntity implements Identifiable<Long> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private PlaceInfoType type;
 
+	@NotNull
 	@Length(max = 500)
 	private String value;
 
+	@NotNull
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "place_id", nullable = false)

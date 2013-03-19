@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.validator.constraints.Length;
@@ -34,6 +35,7 @@ public class PlaceEntity implements Identifiable<Long> {
 	@Length(max = 2000)
 	private String description;
 
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 
@@ -41,7 +43,7 @@ public class PlaceEntity implements Identifiable<Long> {
 	private Date publishDate;
 
 	@JsonManagedReference
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "place", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "place", fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<PlaceInfoEntity> info = new ArrayList<PlaceInfoEntity>();
 
 	public Long getId() {

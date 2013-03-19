@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.placepool.places.dao.PlaceDao;
@@ -35,6 +37,7 @@ public class PlaceDaoImplntegrationTest {
 	public void testPersist() {
 		PlaceEntity ent = new PlaceEntity();
 		ent.setName(new Object().toString());
+		ent.setCreateDate(new Date());
 
 		PlaceInfoEntity info = new PlaceInfoEntity();
 		info.setType(PlaceInfoType.CONTACT);
@@ -58,6 +61,7 @@ public class PlaceDaoImplntegrationTest {
 	public void testDelete() {
 		PlaceEntity ent = new PlaceEntity();
 		ent.setName(new Object().toString());
+		ent.setCreateDate(new Date());
 
 		placeDao.persist(ent);
 		Long id = ent.getId();
@@ -77,6 +81,7 @@ public class PlaceDaoImplntegrationTest {
 		PlaceEntity ent = new PlaceEntity();
 		String name1 = new Object().toString();
 		ent.setName(name1);
+		ent.setCreateDate(new Date());
 
 		placeDao.persist(ent);
 		String name2 = "name2";

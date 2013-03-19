@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('app', ['appServices']).
+var app = angular.module('app', ['appServices', 'ui', 'ngSanitize']).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider
       .when('/', {templateUrl: 'resources/partials/place-list.html',   controller: PlaceListCtrl})
@@ -10,3 +10,13 @@ angular.module('app', ['appServices']).
       .when('/createPlace', {templateUrl:'resources/partials/place-create.html', controller: PlaceCreateCtrl})
       .otherwise({redirectTo: '/'});
 }]);
+
+app.value('ui.config', {
+	select2 : {
+		allowClear : true
+	},
+	tinymce : {
+		width : "640",
+		height: "230"
+	}
+});

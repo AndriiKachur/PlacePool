@@ -55,8 +55,19 @@ public class PlaceResource {
 	public Response saveOrUpdate(PlaceEntity place) {
 		if (place.getId() == null) {
 			place.setCreateDate(new Date());
+			place.setPublishDate(place.getCreateDate()); //TODO: remove after implementing moderator
+			placeDao.saveOrUpdate(place);
+			return Response.ok(place).build();
+		} else {
+			PlaceEntity oldPlace = (PlaceEntity) placeDao.get(place.getClass(), place.getId());
+			if (place != null) {
+				oldPlace.setDescription(place.getDescription());
+				oldPlace.setName(place.getName());
+				oldPlace.setInfo(place.getInfo());
+				placeDao.saveOrUpdate(oldPlace);
+				return Response.ok(oldPlace).build();
+			}
 		}
-		placeDao.saveOrUpdate(place);
-		return Response.ok(place).build();
+		return Response.ok().build();
 	}
 }

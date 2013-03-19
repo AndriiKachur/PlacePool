@@ -1,23 +1,27 @@
-  <div class="row">
-    <div class="span3">
-      <!--Sidebar content-->
 
-      Search: <input ng-model="query">
-      Sort by:
-      <select ng-model="orderProp">
-        <option value="name">Alphabetical</option>
-        <option value="createDate">Newest</option>
-      </select>
+<div class="row">
+	<div class="span3">
+		<!--Sidebar content-->
 
-    </div>
-    <div class="span9">
-      <!--Body content-->
+		<p>
+			Search: <input ng-model="query" type="text">
+		</p>
+		<p>
+			Sort by: <select ng-model="orderProp">
+				<option value="name">Alphabetical</option>
+				<option value="createDate">Newest</option>
+			</select>
+		</p>
 
-      <ul>
-        <li ng-repeat="place in places | filter:query | orderBy:orderProp">
-          <a href="#/place/{{place.id}}">{{place.name}}</a>
-        </li>
-      </ul>
+	</div>
+	<div class="span9">
+		<!--Body content-->
 
-    </div>
-  </div>
+		<ul>
+			<li ng-repeat="place in places | filter:query | orderBy:orderProp">
+				<a href="#/place/{{place.id}}">{{place.name}}</a>
+			</li>
+		</ul>
+
+	</div>
+</div>
