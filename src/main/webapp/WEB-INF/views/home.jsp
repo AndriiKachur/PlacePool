@@ -2,7 +2,8 @@
 <!doctype html>
 <html ng-app="app">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="fragment" content="#" />
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>">
