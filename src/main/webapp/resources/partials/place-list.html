@@ -12,6 +12,12 @@
 				<option value="createDate">Newest</option>
 			</select>
 		</p>
+		<p>
+			Filter by: <select ng-model="rootScope.published">
+				<option value="true">Published</option>
+				<option value="false">Unpublished</option>
+			</select>			
+		</p>
 
 	</div>
 	<div class="span9">
@@ -19,7 +25,7 @@
 
 		<ul>
 			<li ng-repeat="place in places | filter:query | orderBy:orderProp">
-				<a href="#/place/{{place.id}}">{{place.name}}</a>
+				<a href="#/place/{{{true: '', false:'new/'}[rootScope.published == 'true' || rootScope.published == undefined]}}{{place.id}}">{{place.name}}</a>
 			</li>
 		</ul>
 

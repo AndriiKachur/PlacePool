@@ -6,4 +6,24 @@
 
 .banner-div {
 	text-align: center;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.view-div {
+	min-height: 500px;
+}
+
+.container {
+	background-color: white;
+}
+
+footer {
+	text-align: center;
+	min-height: 20px;
+	padding: 5px 0;
+	background-color: #fafafa;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+	border-top: 1px solid #d4d4d4;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }

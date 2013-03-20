@@ -44,8 +44,11 @@
 				src="<c:url value="/resources/img/banner.jpg"/>" class="banner-img" /></a>
 		</div>
 
-		<div ng-view></div>
+		<div ng-view class="view-div"></div>
 
+	<footer>
+		Source code: <a href="https://github.com/Nilanno/PlacePool" target="_blank">https://github.com/Nilanno/PlacePool</a>
+	</footer>
 	</div>
 </body>
 </html>
