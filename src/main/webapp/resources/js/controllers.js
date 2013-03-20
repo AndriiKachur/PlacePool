@@ -42,7 +42,7 @@ function PlaceCreateCtrl($scope, Place, $location) {
 			contentType: 'application/json',
 			data: angular.toJson($scope.place),
 			success: function(data, textStatus, jqXHR) {
-				$location.path('/place/' + data.id);
+				$location.path('/place/new/' + data.id);
 				$scope.$apply();
 			}
 		});

@@ -55,7 +55,7 @@ public class PlaceResource {
 	public Response saveOrUpdate(PlaceEntity place) {
 		if (place.getId() == null) {
 			place.setCreateDate(new Date());
-			place.setPublishDate(place.getCreateDate()); //TODO: remove after implementing moderator
+			place.setPublishDate(null);
 			placeDao.saveOrUpdate(place);
 			return Response.ok(place).build();
 		} else {
