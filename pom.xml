@@ -169,7 +169,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
