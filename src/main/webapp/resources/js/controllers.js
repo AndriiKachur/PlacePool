@@ -3,8 +3,10 @@
 /* Controllers */
 
 function PlaceListCtrl($scope, $rootScope, Place, UnpublishedPlace) {
-	$scope.$watch('rootScope.published', function(newValue, oldValue) {
-		if (newValue == 'true' || newValue == undefined) {
+	sessionStorage.published = $scope.published = sessionStorage.published === undefined ? 'true' : sessionStorage.published;
+	$scope.$watch('published', function(newValue, oldValue) {
+		sessionStorage.published = newValue;
+		if (newValue === 'true') {
 			$scope.places = Place.query();
 		} else {
 			$scope.places = UnpublishedPlace.query();
@@ -18,7 +20,7 @@ function PlaceDetailCtrl($scope, $rootScope, $routeParams, Place) {
 
 	$scope.setImage = function(imageUrl) {
 		$scope.mainImageUrl = imageUrl;
-	}
+	};
 }
 
 function PlaceDetailUnpublishedCtrl($scope, $rootScope, $routeParams, UnpublishedPlace) {
@@ -26,7 +28,7 @@ function PlaceDetailUnpublishedCtrl($scope, $rootScope, $routeParams, Unpublishe
 
 	$scope.setImage = function(imageUrl) {
 		$scope.mainImageUrl = imageUrl;
-	}
+	};
 }
 
 function PlaceCreateCtrl($scope, Place, $location) {
@@ -46,9 +48,9 @@ function PlaceCreateCtrl($scope, Place, $location) {
 				$scope.$apply();
 			}
 		});
-	}
+	};
 	
 	$scope.addLink = function() {
 		$scope.place.info.push({});
-	}
+	};
 }

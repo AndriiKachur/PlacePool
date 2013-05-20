@@ -13,7 +13,7 @@
 			</select>
 		</p>
 		<p>
-			Filter by: <select ng-model="rootScope.published">
+			Filter by: <select ng-model="published">
 				<option value="true">Published</option>
 				<option value="false">Unpublished</option>
 			</select>			
@@ -25,7 +25,7 @@
 
 		<ul>
 			<li ng-repeat="place in places | filter:query | orderBy:orderProp">
-				<a href="#/place/{{{true: '', false:'new/'}[rootScope.published == 'true' || rootScope.published == undefined]}}{{place.id}}">{{place.name}}</a>
+				<a href="#/place/{{{true: '', false:'new/'}[published == 'true']}}{{place.id}}">{{place.name}}</a>
 			</li>
 		</ul>
 
