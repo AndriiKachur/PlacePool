@@ -7,7 +7,7 @@ var appModules = angular.module('appServices', ['ngResource']);
 appModules.factory('Place', function($resource){
   return $resource('rest/places/:placeId', {}, {
     query: {method:'GET', isArray:true},
-    save: {method: 'PUT', headers : {'Content-Type' : 'application/json'}}
+    save: {method: 'PUT', url: 'rest/places/'}
   });
 });
 

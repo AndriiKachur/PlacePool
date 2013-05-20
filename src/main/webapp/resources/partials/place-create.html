@@ -19,9 +19,10 @@
 		<p>Place links: <a ng-click="addLink()">Add</a></p>
 		<ul ng-repeat="i in place.info">
 			<li>
-			<select ng-model="i.type" ng-options="value for value in ['CONTACT', 'IMAGE_URL', 'DESC_URL']">
+			<select ng-model="i.type" ng-options="value for value in linkTypes">
 			</select>
-			<input type="url" ng-model="i.value" required placeholder="url"/> [<a href ng-click="place.info.splice($index, 1)">X</a>]</li>
+			<input type="text" ng-model="i.value" required placeholder="url"/>
+				 [<a href ng-click="place.info.splice($index, 1)">X</a>]</li>
 		</ul>
 	</div>
 
