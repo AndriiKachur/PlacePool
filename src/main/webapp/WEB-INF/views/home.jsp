@@ -12,10 +12,10 @@
 <script src="<c:url value="/resources/js/lib/jquery.js"/>"></script>
 <script src="<c:url value="/resources/js/lib/tinymce/tiny_mce.js"/>"></script>
 <script src="<c:url value="/resources/js/lib/tinymce/jquery.tinymce.js"/>"></script>
-<script src="<c:url value="/resources/js/lib/angular.js"/>"></script>
+<script src="<c:url value="/resources/js/lib/angular/angular.js"/>"></script>
+<script src="<c:url value="/resources/js/lib/angular/angular-resource.js"/>"></script>
+<script src="<c:url value="/resources/js/lib/angular/angular-sanitize.js"/>"></script>
 <script src="<c:url value="/resources/js/lib/angular-ui.js"/>"></script>
-<script src="<c:url value="/resources/js/lib/angular-resource.js"/>"></script>
-<script src="<c:url value="/resources/js/lib/angular-sanitize.js"/>"></script>
 <script src="<c:url value="/resources/js/lib/bootstrap.js"/>"></script>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
