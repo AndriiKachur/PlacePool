@@ -1,4 +1,4 @@
-package org.placepool.places.mvc;
+package org.placepool.places.mvc.backend;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -8,18 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
-@RequestMapping("/")
-public class HomeController {
+@RequestMapping("/admin")
+public class AdminController {
 
-	private final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -28,12 +24,7 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
-		return "home";
-	}
-
-	@RequestMapping(value = "timeout", method = RequestMethod.GET)
-	public String loggedOut() {
-		return "timeout";
+		return "admin/home";
 	}
 
 }
