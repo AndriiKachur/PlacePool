@@ -48,4 +48,31 @@
 		</createTable>
 	</changeSet>
 
+	<changeSet id="spring security jdbc" author="Nilanno">
+		<createTable tableName="users">
+			<column name="username" type="varchar(50)">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="password" type="varchar(100)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="enabled" type="boolean">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<createTable tableName="authorities">
+			<column name="username" type="varchar(50)">
+				<constraints nullable="false" foreignKeyName="fk_authorities_users" references="users(username)"/>
+			</column>
+			<column name="authority" type="varchar(50)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<createIndex tableName="authorities" indexName="ix_auth_username">
+			<column name="username"/>
+			<column name="authority"/>
+		</createIndex>
+	</changeSet>
 </databaseChangeLog>
