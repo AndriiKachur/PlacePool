@@ -12,15 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class PlaceServiceImpl implements PlaceService {
-	
+
 	private static final Class<?> ENT_CLASS = PlaceEntity.class;
-	
+
 	@Autowired
 	private PlaceDao placeDao;
-	
+
 	@Override
 	public PlaceEntity saveOrUpdate(PlaceEntity place) {
 		PlaceEntity result = place;
+		if (place == null) {
+			return null;
+		}
 		if (place.getId() == null) {
 			place.setCreateDate(new Date());
 			place.setPublishDate(null);
@@ -28,13 +31,11 @@ public class PlaceServiceImpl implements PlaceService {
 			result = place;
 		} else {
 			PlaceEntity oldPlace = (PlaceEntity) placeDao.get(ENT_CLASS, place.getId());
-			if (place != null) {
-				oldPlace.setDescription(place.getDescription());
-				oldPlace.setName(place.getName());
-				oldPlace.setInfo(place.getInfo());
-				placeDao.saveOrUpdate(oldPlace);
-				result = oldPlace;
-			}
+			oldPlace.setDescription(place.getDescription());
+			oldPlace.setName(place.getName());
+			oldPlace.setInfo(place.getInfo());
+			placeDao.saveOrUpdate(oldPlace);
+			result = oldPlace;
 		}
 		return result;
 	}

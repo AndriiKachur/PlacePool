@@ -1,0 +1,37 @@
+<form class="form-horizontal" ng-submit="save()">
+	<legend>Enter new Place details</legend>
+	
+	<p>
+	<label>Place name: 
+		<input type="text" ng-model="place.name" required ngMaxlength="100" placeholder="Place title..."/>
+	</label>
+	</p>
+	
+	<p>
+	<label>Place description:
+		<textarea ui-tinymce ngMaxlength="2000" ng-model="place.description"
+			placeholder="Place description..." cols="50" rows="10">
+		</textarea>
+	</label>
+	</p>
+
+	<div>
+		<p>Additional place information: <a ng-click="addLink()">Add</a></p>
+		<ul ng-repeat="i in place.info">
+			<li>
+				<select ng-model="i.type" ng-options="value | placeInfo for value in linkTypes">
+				</select>
+				<span ng-switch="i.type">
+					<input ng-switch-when="DESC_URL" type="url" ng-model="i.value" required placeholder="Description url"/>
+					<input ng-switch-when="IMAGE_URL" type="url" ng-model="i.value" required placeholder="Image url"/>
+					<input ng-switch-when="CONTACT" type="text" ng-model="i.value" required placeholder="Contact details"/>
+						<a href ng-click="place.info.splice($index, 1)">Remove</a>
+				</span>
+			</li>
+		</ul>
+	</div>
+
+	<button type="submit" value="submit" class="btn">Create place</button>
+
+
+</form>

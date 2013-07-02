@@ -1,0 +1,25 @@
+<div class="well">
+	<p>
+		<b>{{place.name}}</b> <span class="pull-right">{{place.createDate | date}}</span>
+	</p>
+
+	<hr />
+	<div ng-bind-html="place.description"></div>
+	<hr />
+
+	<h4 ng-if="(place.info | placeInfo:'CONTACT').length > 0">Info</h4>
+	<ul ng-repeat="i in place.info | placeInfo:'CONTACT'">
+		<li>{{i.type | placeInfo}}: {{i.value}}</li>
+	</ul>
+	
+	<ul ng-repeat="i in place.info | placeInfo:'DESC_URL'">
+		<li>
+			{{i.type | placeInfo}}: <a ng-href="{{i.value}}" target="_blank">{{i.value}}</a>
+		</li>
+	</ul>
+
+	<h4 ng-if="(place.info | placeInfo:'IMAGE_URL').length > 0">Images</h4>
+	<span ng-repeat="i in place.info | placeInfo:'IMAGE_URL'"> <a ng-href="{{i.value}}" target="_blank">
+		<img height="100" width="100" ng-src="{{i.value}}" alt="Place image"/></a>
+	</span>
+</div>

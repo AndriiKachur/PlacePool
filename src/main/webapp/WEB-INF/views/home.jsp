@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="app">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,11 +18,11 @@
 <script src="<c:url value="/resources/js/lib/angular-ui.js"/>"></script>
 <script src="<c:url value="/resources/js/lib/bootstrap.js"/>"></script>
 
-<script src="<c:url value="/resources/js/app.js"/>"></script>
-<script src="<c:url value="/resources/js/controllers.js"/>"></script>
-<script src="<c:url value="/resources/js/filters.js"/>"></script>
-<script src="<c:url value="/resources/js/services.js"/>"></script>
-<script src="<c:url value="/resources/js/directives.js"/>"></script>
+<script src="<c:url value="/resources/js/mvc/home/app.js"/>"></script>
+<script src="<c:url value="/resources/js/mvc/home/controllers.js"/>"></script>
+<script src="<c:url value="/resources/js/mvc/home/filters.js"/>"></script>
+<script src="<c:url value="/resources/js/mvc/home/services.js"/>"></script>
+<script src="<c:url value="/resources/js/mvc/home/directives.js"/>"></script>
 
 <title>PlacePool - cool places for travel planning!</title>
 </head>

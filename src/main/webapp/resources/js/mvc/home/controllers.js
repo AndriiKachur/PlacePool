@@ -32,18 +32,8 @@ function PlaceDetailCtrl($scope, $rootScope, $routeParams, Place) {
 }
 
 function PlaceDetailUnpublishedCtrl($scope, $rootScope, $routeParams, UnpublishedPlace) {
-	$scope.images = [];
-	$scope.info = [];
-	
 	UnpublishedPlace.get({placeId: $routeParams.placeId}, function(place) {
 		$scope.place = place;
-		for (var i in place.info) {
-			if (place.info[i].type === 'IMAGE_URL') {
-				$scope.images.push(place.info[i]);
-			} else {
-				$scope.info.push(place.info[i]);
-			}
-		}
 	});
 }
 

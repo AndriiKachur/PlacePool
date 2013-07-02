@@ -18,25 +18,21 @@ public class GenericDaoImpl<T extends Serializable> implements GenericDao<T> {
 	@Override
 	public void persist(Identifiable<T> entity) {
 		sessionFactory.getCurrentSession().persist(entity);
-		sessionFactory.getCurrentSession().flush();
 	}
 
 	@Override
 	public void delete(Identifiable<T> entity) {
 		sessionFactory.getCurrentSession().delete(entity);
-		sessionFactory.getCurrentSession().flush();
 	}
 
 	@Override
 	public void saveOrUpdate(Identifiable<T> entity) {
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		sessionFactory.getCurrentSession().flush();
 	}
 
 	@Override
 	public void update(Identifiable<T> entity) {
 		sessionFactory.getCurrentSession().update(entity);
-		sessionFactory.getCurrentSession().flush();
 	}
 
 	@Override
